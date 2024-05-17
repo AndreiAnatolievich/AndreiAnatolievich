@@ -1,19 +1,19 @@
-# %%
+# импорт библиотек
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# %%
+# загрузка отредактированного файла с Kaggle
 data = pd.read_csv(r'energy_1.csv')
 data.head()
 
-# %%
+# приведение направления ветра к бинарному
 data['wind_direction_rad'] = data['wind_direction']*np.pi/180
 data['wind_direction_sin'] = np.sin(data['wind_direction_rad'])
 data['wind_direction_cos'] = np.cos(data['wind_direction_rad'])
 data = data.drop(labels=['wind_direction_rad'], axis=1)
 
-# %%
+# 
 data['air_temperature_1'] = data['air_temperature'].diff()
 
 # %%
